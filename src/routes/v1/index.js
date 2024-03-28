@@ -1,6 +1,7 @@
 const express = require('express');
 
 const UserController = require('../../controllers/user-controller');
+const RoleController = require('../../controllers/role-controller');
 const {AuthRequestValidators} = require('../../middlewares/index');
 
 const router = express.Router();
@@ -20,4 +21,8 @@ router.get(
     UserController.isAuthenticated
 );
 //router.get('/email',UserController.get);
+router.post(
+    '/role',
+    RoleController.create
+);
 module.exports=router;
