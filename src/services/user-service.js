@@ -89,6 +89,14 @@ class UserService {
         }
     }
 
+    isTeacher(userId){
+        try {
+            return this.userRepository.isTeacher(userId);
+        } catch (error) {
+            console.log("Something went wrong in password comparison");
+            throw error;
+        }
+    }
 }
 
 module.exports = UserService;

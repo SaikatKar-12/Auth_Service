@@ -25,4 +25,13 @@ router.post(
     '/role',
     RoleController.create
 );
+router.get(
+    '/isTeacher',
+    UserController.isTeacher
+);
+router.post(
+    '/addUserRole',
+    UserController.addUserRole
+);
+
 module.exports=router;

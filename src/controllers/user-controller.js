@@ -1,6 +1,7 @@
 const {response} = require('express');
 const UserService = require("../services/user-service");
 
+const {User,Role} = require('../models/index');
 const userService = new UserService();
 
 const create = async (req,res)=>{
@@ -87,9 +88,52 @@ const isAuthenticated = async (req, res) => {
     }
 }
 
+const isTeacher = async (req, res) => {
+    try {
+        const response = await userService.isTeacher(req.body.id);
+        return res.status(200).json({
+            data:response,
+            err:{},
+            success:true,
+            message:'Successfully fetched whether user is teacher or not'
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: 'Something went wrong',
+            data: {},
+            success: false,
+            err: error
+        });
+    }
+}
+
+const addUserRole = async (req,res)=>{
+    try {
+        const u1 = await User.findByPk(req.body.userId);
+        const r1 = await Role.findByPk(req.body.roleId);
+        u1.addRole(r1);
+        return res.status(200).json({
+            err:{},
+            success:true,
+            message:'Successfully added user-role'
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: 'Something went wrong',
+            data: {},
+            success: false,
+            err: error
+        });
+    }
+}
+
 module.exports ={
     create,
     signIn,
     get,
-    isAuthenticated
+    isAuthenticated,
+    isTeacher,
+    addUserRole
 }
