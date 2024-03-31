@@ -25,7 +25,7 @@ router.post(
     '/role',
     RoleController.create
 );
-router.get(
+router.post(
     '/isTeacher',
     UserController.isTeacher
 );

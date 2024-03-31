@@ -7,6 +7,9 @@ const apiRoutes = require('./routes/index');
 const db = require('./models/index');
 const {User,Role} = require('./models/index');
 const app = express();
+const cors = require("cors");
+
+app.use(cors());
 
 const prepareAndStartServer = ()=>{
 
@@ -17,8 +20,8 @@ const prepareAndStartServer = ()=>{
 
     app.listen(PORT, async()=>{
         console.log(`Server Started on Port : ${PORT}`);
-        const u1 = await User.findByPk(2);
-        const r1 = await Role.findByPk(1);
+        // const u1 = await User.findByPk(2);
+        // const r1 = await Role.findByPk(1);
         //u1.addRole(r1);
     });
 }
