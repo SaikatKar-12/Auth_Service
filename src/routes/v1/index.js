@@ -30,6 +30,10 @@ router.post(
     UserController.isTeacher
 );
 router.post(
+    '/isConvenor',
+    UserController.isConvenor
+);
+router.post(
     '/addUserRole',
     UserController.addUserRole
 );

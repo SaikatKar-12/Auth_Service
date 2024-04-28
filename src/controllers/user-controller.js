@@ -108,6 +108,26 @@ const isTeacher = async (req, res) => {
     }
 }
 
+const isConvenor = async (req, res) => {
+    try {
+        const response = await userService.isConvenor(req.body.id);
+        return res.status(200).json({
+            data:response,
+            err:{},
+            success:true,
+            message:'Successfully fetched whether user is convenor or not'
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: 'Something went wrong',
+            data: {},
+            success: false,
+            err: error
+        });
+    }
+}
+
 const addUserRole = async (req,res)=>{
     try {
         const u1 = await User.findByPk(req.body.userId);
@@ -135,5 +155,6 @@ module.exports ={
     get,
     isAuthenticated,
     isTeacher,
-    addUserRole
+    addUserRole,
+    isConvenor
 }

@@ -64,6 +64,20 @@ class UserRepository {
             throw error;
         }
     }
+    async isConvenor(userId){
+        try{
+            const user = await User.findByPk(userId);
+            const convenorRole = await Role.findOne({
+                where:{
+                    name:'convenor'
+                }
+            });
+            return user.hasRole(convenorRole);
+        }catch(error){
+            console.log("Something went wrong on repository layer");
+            throw error;
+        }
+    }
 }
 
 module.exports = UserRepository;

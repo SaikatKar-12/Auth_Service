@@ -97,6 +97,14 @@ class UserService {
             throw error;
         }
     }
+    isConvenor(userId){
+        try {
+            return this.userRepository.isConvenor(userId);
+        } catch (error) {
+            console.log("Something went wrong in password comparison");
+            throw error;
+        }
+    }
 }
 
 module.exports = UserService;
